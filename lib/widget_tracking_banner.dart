@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class WidgetTrackingBanner extends StatefulWidget {
   final String bannerText;
+  final TextStyle textBannerStyle;
   final String readMoreButtonText;
   final String readMoreButtonLinkUrl;
   final String negativeButtonText;
@@ -16,6 +17,7 @@ class WidgetTrackingBanner extends StatefulWidget {
 
   const WidgetTrackingBanner({Key key,
     @required this.bannerText,
+    this.textBannerStyle,
     this.readMoreButtonText,
     this.readMoreButtonLinkUrl,
     @required this.negativeButtonText,
@@ -70,7 +72,7 @@ class _WidgetTrackingBannerState extends State<WidgetTrackingBanner> {
                     width: MediaQuery.of(context).size.width / 2,
                     child: Text(
                       _checkStringNullability(widget.bannerText) ? "" : widget.bannerText,
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: widget.textBannerStyle != null ? widget.textBannerStyle : TextStyle(fontSize: 18, color: Colors.black),
                       maxLines: 3,
                     ),
                   ),
