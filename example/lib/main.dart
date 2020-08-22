@@ -5,9 +5,9 @@ import 'package:flutter_matomo/flutter_matomo.dart';
 
 void main() => runApp(MyApp());
 
-const MATOMO_URL = 'https://analytics.niarme.com/matomo.php';
-const SITE_ID = 2;
-const SITE_URL = "https://pro.niarme.com/";
+const MATOMO_URL = 'https://analytics.example.com/matomo.php';
+const SITE_ID = 1;
+const SITE_URL = "https://example.site.com/";
 
 class MyApp extends StatefulWidget {
   @override
