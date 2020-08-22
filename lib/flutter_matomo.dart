@@ -171,7 +171,7 @@ abstract class TraceableNamedState<T extends TraceableNamedStatefulWidget> exten
 
 abstract class TraceableStatelessWidget extends StatelessWidget {
 
-  TraceableStatelessWidget(Key key) : super(key: key)
+  TraceableStatelessWidget(Key key) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
