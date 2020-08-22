@@ -27,13 +27,13 @@ class _MyAppState extends State<MyApp> {
     FlutterMatomo.initializeTracker(MATOMO_URL, SITE_URL, SITE_ID);
     setState(() {});
 
-    FlutterMatomo.trackEvent(context, "Tests", "First test", "Testing in app");
+    FlutterMatomo.trackEvent(context, "Tests", 1, "Testing in app");
     _matomoStatus = "Passed track event";
 
     FlutterMatomo.trackScreen(context, "Screen opened");
     _matomoStatus = "Passed track screen";
 
-    FlutterMatomo.trackEventWithName("Testing", "This uses a name MyAppWidget", "LOGIIIN button", "Clicked");
+    FlutterMatomo.trackEventWithName("This uses a name MyAppWidget", "LOGIIIN button", 0, "Clicked");
     _matomoStatus = "Passed track event with name";
 
     FlutterMatomo.trackDownload("https://example.download.com");
