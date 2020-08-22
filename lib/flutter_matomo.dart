@@ -19,7 +19,6 @@ class FlutterMatomo {
     http.post(_startingUrl +
         "&action_name='TrackEvent'"+
         "&e_c="+eventCategory +
-        "&e_n="+eventCategory +
         "&e_v="+eventValue.toString() +
         "&e_n="+widgetName +
         "&e_a="+eventAction);
@@ -29,8 +28,22 @@ class FlutterMatomo {
     http.post(_startingUrl +
         "&action_name='TrackEventWithName'"+
         "&e_c=" + eventCategory +
-        "&e_n=" + eventCategory +
         "&e_v=" + eventValue.toString() +
+        "&e_n=" + eventName +
+        "&e_a=" + eventAction);
+  }
+
+  static trackEventWithCategory(String eventCategory, String eventName, String eventAction) {
+    http.post(_startingUrl +
+        "&action_name='TrackEventWithNameCategory'"+
+        "&e_c=" + eventCategory +
+        "&e_n=" + eventName +
+        "&e_a=" + eventAction);
+  }
+
+  static trackEventAction(String eventName, String eventAction) {
+    http.post(_startingUrl +
+        "&action_name='TrackEventWithNameAction'"+
         "&e_n=" + eventName +
         "&e_a=" + eventAction);
   }
