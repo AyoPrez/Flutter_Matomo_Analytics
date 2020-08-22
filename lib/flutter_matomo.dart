@@ -170,6 +170,9 @@ abstract class TraceableNamedState<T extends TraceableNamedStatefulWidget> exten
 
 
 abstract class TraceableStatelessWidget extends StatelessWidget {
+
+  TraceableStatelessWidget(Key key) : super(key: key)
+
   @override
   Widget build(BuildContext context) {
     FlutterMatomo.trackScreen(context);
@@ -178,6 +181,7 @@ abstract class TraceableStatelessWidget extends StatelessWidget {
 }
 
 abstract class TraceableState<T extends StatefulWidget> extends State {
+
   @override
   Widget build(BuildContext context) {
     FlutterMatomo.trackScreen(context);
