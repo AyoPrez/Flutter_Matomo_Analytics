@@ -70,7 +70,7 @@ class _WidgetTrackingBannerState extends State<WidgetTrackingBanner> {
                     width: MediaQuery.of(context).size.width / 2,
                     child: Text(
                       _checkStringNullability(widget.bannerText) ? "" : widget.bannerText,
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                       maxLines: 3,
                     ),
                   ),
