@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_matomo/flutter_matomo.dart';
+import 'package:flutter_matomo/widget_tracking_banner.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,18 +51,32 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Text(_matomoStatus, textAlign: TextAlign.center),
-          ),
+        body: Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Text(_matomoStatus, textAlign: TextAlign.center),
+              ),
+            ),
+            Positioned(bottom: 0, child: WidgetTrackingBanner(
+              readMoreButtonText: "Read more",
+              negativeButtonText: "No",
+              positiveButtonText: "Yes",
+              bannerText: "Allow to use cookies?",
+              displayTrackingBanner: true,
+              buttonPressed: (value) {
+                print("Button pressed value: " + value.toString());
+              },
+            ))
+          ],
         ),
-//        floatingActionButton: FloatingActionButton.extended(onPressed: () => FlutterMatomo.dispatchEvents(), label: Text("Dispatch now")),
       ),
     );
   }
