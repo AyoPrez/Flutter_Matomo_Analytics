@@ -25,7 +25,7 @@ class FlutterMatomo {
       var widgetName = context.widget.toStringShort();
 
       http.post(_startingUrl +
-          "&action_name='TrackEvent'" +
+          "&action_name=TrackEvent " +
           "&e_c=" + eventCategory +
           "&e_v=" + eventValue.toString() +
           "&e_n=" + widgetName +
@@ -36,7 +36,7 @@ class FlutterMatomo {
   static trackEventWithName(String eventCategory, String eventName, int eventValue, String eventAction) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackEventWithName'" +
+          "&action_name=TrackEventWithName " +
           "&e_c=" + eventCategory +
           "&e_v=" + eventValue.toString() +
           "&e_n=" + eventName +
@@ -47,7 +47,7 @@ class FlutterMatomo {
   static trackEventWithCategory(String eventCategory, String eventName, String eventAction) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackEventWithCategory'" +
+          "&action_name=TrackEventWithCategory " +
           "&e_c=" + eventCategory +
           "&e_n=" + eventName +
           "&e_a=" + eventAction);
@@ -57,7 +57,7 @@ class FlutterMatomo {
   static trackEventAction(String eventName, String eventAction) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackEventAction'" +
+          "&action_name=TrackEventAction " +
           "&e_n=" + eventName +
           "&e_a=" + eventAction);
     }
@@ -66,7 +66,7 @@ class FlutterMatomo {
   static trackAction(String eventName, String action) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackAction '" + action);
+          "&action_name=TrackAction " + action);
     }
   }
 
@@ -75,7 +75,7 @@ class FlutterMatomo {
       var widgetName = context.widget.toStringShort();
 
       http.post(_startingUrl +
-          "&action_name='TrackScreenEvent'" +
+          "&action_name=TrackScreenEvent " +
           "&e_v=" + widgetName +
           "&e_n=" + eventName);
     }
@@ -85,14 +85,14 @@ class FlutterMatomo {
     if(_trackingState) {
       var widgetName = context.widget.toStringShort();
 
-      http.post(_startingUrl + "&action_name='TrackScreen '" + widgetName);
+      http.post(_startingUrl + "&action_name=TrackScreen " + widgetName);
     }
   }
 
   static trackScreenWithName(String screenName, String eventName) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackScreenWithName'" +
+          "&action_name=TrackScreenWithName " +
           "&e_n=" + screenName +
           "&e_v=" + eventName);
     }
@@ -101,7 +101,7 @@ class FlutterMatomo {
   static trackDownload(String downloadUrl) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackDownload'" +
+          "&action_name=TrackDownload " +
           "&download=" + downloadUrl);
     }
   }
@@ -109,18 +109,18 @@ class FlutterMatomo {
   static trackGoal(int goalId) {
     if(_trackingState) {
       http.post(_startingUrl +
-          "&action_name='TrackGoal'" +
+          "&action_name=TrackGoal " +
           "&idgoal=" + goalId.toString());
     }
   }
 
 }
 
-abstract class TraceableStatelessWidget extends StatelessWidget {
+abstract class TraceableNamedStatelessWidget extends StatelessWidget {
   final String name;
   final String title;
 
-  TraceableStatelessWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
+  TraceableNamedStatelessWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
 
   @override
   StatelessElement createElement() {
@@ -129,11 +129,11 @@ abstract class TraceableStatelessWidget extends StatelessWidget {
   }
 }
 
-abstract class TraceableStatefulWidget extends StatefulWidget {
+abstract class TraceableNamedStatefulWidget extends StatefulWidget {
   final String name;
   final String title;
 
-  TraceableStatefulWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
+  TraceableNamedStatefulWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
 
   @override
   StatefulElement createElement() {
@@ -142,11 +142,11 @@ abstract class TraceableStatefulWidget extends StatefulWidget {
   }
 }
 
-abstract class TraceableInheritedWidget extends InheritedWidget {
+abstract class TraceableNamedInheritedWidget extends InheritedWidget {
   final String name;
   final String title;
 
-  TraceableInheritedWidget({this.name = '', this.title = 'WidgetCreated', Key key, Widget child}) : super(key: key, child: child);
+  TraceableNamedInheritedWidget({this.name = '', this.title = 'WidgetCreated', Key key, Widget child}) : super(key: key, child: child);
 
   @override
   InheritedElement createElement() {
@@ -155,7 +155,7 @@ abstract class TraceableInheritedWidget extends InheritedWidget {
   }
 }
 
-abstract class TraceableState<T extends TraceableStatefulWidget> extends State {
+abstract class TraceableNamedState<T extends TraceableNamedStatefulWidget> extends State {
   DateTime openedAt = DateTime.now();
   @override
   T get widget => super.widget;
@@ -164,5 +164,23 @@ abstract class TraceableState<T extends TraceableStatefulWidget> extends State {
   void dispose() {
     int secondsSpent = DateTime.now().difference(openedAt).inSeconds;
     super.dispose();
+  }
+}
+
+
+
+abstract class TraceableStatelessWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    FlutterMatomo.trackScreen(context);
+    return build(context);
+  }
+}
+
+abstract class TraceableState<T extends TraceableNamedStatefulWidget> extends State {
+  @override
+  Widget build(BuildContext context) {
+    FlutterMatomo.trackScreen(context);
+    return build(context);
   }
 }
