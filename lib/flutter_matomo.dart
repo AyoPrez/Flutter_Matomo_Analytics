@@ -183,6 +183,9 @@ abstract class TraceableStatelessWidget extends StatelessWidget {
 abstract class TraceableState<T extends StatefulWidget> extends State {
 
   @override
+  T get widget => super.widget;
+
+  @override
   Widget build(BuildContext context) {
     FlutterMatomo.trackScreen(context);
     return build(context);
