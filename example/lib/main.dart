@@ -69,7 +69,8 @@ class _MyAppState extends State<MyApp> {
               readMoreButtonText: "Read more",
               negativeButtonText: "No",
               positiveButtonText: "Yes",
-              bannerText: "Allow to use cookies?",
+              readMoreButtonLinkUrl: "https://example.com",
+              bannerText: "Do you allow this site to use cookies to track all your movements in the site?",
               displayTrackingBanner: true,
               buttonPressed: (value) {
                 print("Button pressed value: " + value.toString());

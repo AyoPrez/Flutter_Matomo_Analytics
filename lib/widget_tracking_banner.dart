@@ -44,7 +44,7 @@ class _WidgetTrackingBannerState extends State<WidgetTrackingBanner> {
   Widget build(BuildContext context) {
     return displayBanner ? Container(
         width: MediaQuery.of(context).size.width,
-        height: 90,
+        height: MediaQuery.of(context).size.width < 600 ? 120 : 90,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(top: BorderSide(color: Colors.black54)),
@@ -57,7 +57,6 @@ class _WidgetTrackingBannerState extends State<WidgetTrackingBanner> {
             ),
           ],
         ),
-
         child: Stack(
           children: [
             Positioned(
@@ -67,14 +66,60 @@ class _WidgetTrackingBannerState extends State<WidgetTrackingBanner> {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
-                  child: Text(
-                    _checkStringNullability(widget.bannerText) ? "" : widget.bannerText,
-                    style: TextStyle(fontSize: 18),
-                    maxLines: 3,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Text(
+                      _checkStringNullability(widget.bannerText) ? "" : widget.bannerText,
+                      style: TextStyle(fontSize: 18),
+                      maxLines: 3,
+                    ),
                   ),
                 ),
               ),
             ),
+            MediaQuery.of(context).size.width < 600 ?
+            Positioned(
+              right: 0,
+              top: 0,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5, right: 20),
+                child: Column(
+                  children: [
+                    _checkStringNullability(widget.readMoreButtonLinkUrl) || _checkStringNullability(widget.readMoreButtonText) ?
+                    Container() :
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: FlatButton(
+                          onPressed: () => _launchURL(),
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          child: Text(widget.readMoreButtonText)
+                      ),
+                    ),
+
+                    Row(
+                      children: [
+
+                    _button(context,
+                        _checkStringNullability(widget.negativeButtonText) ? "No" : widget.negativeButtonText,
+                        widget.negativeButtonColor != null
+                        ? widget.negativeButtonColor
+                        : Colors.red.shade300,
+                            () => allowTracking(false)),
+                    _button(context,
+                        _checkStringNullability(widget.positiveButtonText) ? "Yes" : widget.positiveButtonText,
+                        widget.positiveButtonColor != null
+                        ? widget.positiveButtonColor
+                        : Colors.green.shade300,
+                        () => allowTracking(true)),
+                  ],
+                ),
+                  ]
+                ),
+              )
+            ) :
             Positioned(
               right: 0,
               bottom: 2,
