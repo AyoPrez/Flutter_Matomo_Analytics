@@ -74,7 +74,7 @@ FlutterMatomo.trackEventWithName("SomeWidgetName", "Sign up button", "Clicked");
 #### Track app download (ONLY ON ANDROID)
 
 ```$xslt
-FlutterMatomo.trackDownload("https://DOWNLOADED_URL/");
+FlutterMatomo.trackDownload("https://DOWNLOAD_URL/");
 ``` 
 
 
