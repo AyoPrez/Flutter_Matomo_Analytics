@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     FlutterMatomo.trackEvent(context, "Tests", 1, "Testing in app");
     _matomoStatus = "Passed track event";
 
-    FlutterMatomo.trackScreen(context, "Screen opened");
+    FlutterMatomo.trackScreenEvent(context, "Screen opened");
     _matomoStatus = "Passed track screen";
 
     FlutterMatomo.trackEventWithName("This uses a name MyAppWidget", "LOGIIIN button", 0, "Clicked");

@@ -63,14 +63,29 @@ class FlutterMatomo {
     }
   }
 
-  static trackScreen(BuildContext context, String eventName) {
+  static trackAction(String eventName, String action) {
+    if(_trackingState) {
+      http.post(_startingUrl +
+          "&action_name='TrackAction '" + action);
+    }
+  }
+
+  static trackScreenEvent(BuildContext context, String eventName) {
     if(_trackingState) {
       var widgetName = context.widget.toStringShort();
 
       http.post(_startingUrl +
-          "&action_name='TrackScreen'" +
+          "&action_name='TrackScreenEvent'" +
           "&e_v=" + widgetName +
           "&e_n=" + eventName);
+    }
+  }
+
+  static trackScreen(BuildContext context) {
+    if(_trackingState) {
+      var widgetName = context.widget.toStringShort();
+
+      http.post(_startingUrl + "&action_name='TrackScreen '" + widgetName);
     }
   }
 
