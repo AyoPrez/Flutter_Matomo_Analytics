@@ -1,8 +1,8 @@
 name: flutter_matomo
 description: Matomo tracking for flutter, this library is based on the android and the ios libraries provided by the Matomo team
 version: 1.2.0
-authors: [Karim Abdo <karim.abdo@petleo.net>, Bulent Hacioglu <buelent.hacioglu@petleo.net>, Patrick Palacin <patrick.palacin@i-atros.com>]
-homepage: https://gitlab.com/petleo-and-iatros-opensource/flutter_matomo
+authors: [Karim Abdo <karim.abdo@petleo.net>, Bulent Hacioglu <buelent.hacioglu@petleo.net>, Patrick Palacin <patrick.palacin@i-atros.com>, Ayoze Pérez Rodríguez]
+homepage: https://github.com/AyoPrez/Flutter_Matomo_Analytics
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

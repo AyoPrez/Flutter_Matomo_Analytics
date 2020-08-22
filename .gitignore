@@ -5,3 +5,15 @@
 .pub/
 
 build/
+.idea/codeStyles/Project.xml
+.idea/kotlinc.xml
+.idea/libraries/Dart_SDK.xml
+.idea/libraries/Flutter_for_Android.xml
+.idea/libraries/KotlinJavaRuntime.xml
+.idea/libraries/Flutter_Plugins.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations/example_lib_main_dart.xml
+.idea/vcs.xml
+.idea/workspace.xml
+flutter_matomo.iml
